@@ -20,17 +20,17 @@ public class EstadisticasVentas {
         ventasTotales += producto.getPrecioFinal();
     }
 
-    public void mostrarEstadisticas() {
-        System.out.println("Estadísticas de Ventas:");
-        System.out.println("Ventas Totales: " + ventasTotales);
-        System.out.println("Ventas por Producto:");
-        for (Map.Entry<String, Integer> entry : ventasPorProducto.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
-        System.out.println("Ventas por Categoría:");
-        for (Map.Entry<CategoriaProducto, Integer> entry : ventasPorCategoria.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
+    public double getVentasTotales() {
+        return ventasTotales;
+    }
+
+    public Map<String, Integer> getVentasPorProducto() {
+        return ventasPorProducto;
+    }
+
+    public Map<CategoriaProducto, Integer> getVentasPorCategoria() {
+        return ventasPorCategoria;
     }
 }
+
 

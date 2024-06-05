@@ -4,9 +4,8 @@ import Controller.*;
 import Model.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+import java.util.Map;
 
 public class TestSistemaSuperMaxi {
     private static GestorProducto gestorProducto = new GestorProducto();
@@ -98,7 +97,7 @@ public class TestSistemaSuperMaxi {
                         }
 
                         Producto productoSeleccionadoObj = gestorProducto.getProductos().get(productoSeleccionado - 1);
-                        
+
                         if (productoSeleccionadoObj.getStock() > 0) {
                             productoSeleccionadoObj.reducirStock(1); // Reducir el stock en 1
                             if (productoSeleccionadoObj.getStock() == 0) {
@@ -115,7 +114,16 @@ public class TestSistemaSuperMaxi {
                     System.out.println(factura);
                     break;
                 case 4:
-                    estadisticasVentas.mostrarEstadisticas();
+                    System.out.println("Estadísticas de Ventas:");
+                    System.out.println("Ventas Totales: " + estadisticasVentas.getVentasTotales());
+                    System.out.println("Ventas por Producto:");
+                    for (Map.Entry<String, Integer> entry : estadisticasVentas.getVentasPorProducto().entrySet()) {
+                        System.out.println(entry.getKey() + ": " + entry.getValue());
+                    }
+                    System.out.println("Ventas por Categoría:");
+                    for (Map.Entry<CategoriaProducto, Integer> entry : estadisticasVentas.getVentasPorCategoria().entrySet()) {
+                        System.out.println(entry.getKey() + ": " + entry.getValue());
+                    }
                     break;
                 case 5:
                     break OUTER;
@@ -128,5 +136,3 @@ public class TestSistemaSuperMaxi {
         tc.close();
     }
 }
-
-
